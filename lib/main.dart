@@ -14,12 +14,16 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Color change=Colors.orange;
+  Color change = Colors.orange;
+  Color change2 = Colors.black;
+  Color change3=Colors.blue;
   TextEditingController controller = TextEditingController();
-  Widget exp(String b, [Color col2 = Colors.orange]) {
+  Widget exp(
+    String b,
+  ) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: col2,
+          backgroundColor: change,
           fixedSize: Size(40, 65),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -46,14 +50,16 @@ class _MyAppState extends State<MyApp> {
         ));
   }
 
-  Widget wid(String a, [Color col = Colors.black]) {
+  Widget wid(
+    String a,
+  ) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            fixedSize: Size(40, 65),
-            backgroundColor: col,
-            surfaceTintColor: col),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          fixedSize: Size(40, 65),
+          backgroundColor: change2,
+        ),
         onPressed: () {
           controller.text += a;
         },
@@ -88,7 +94,7 @@ class _MyAppState extends State<MyApp> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       fixedSize: Size(40, 65),
-                      backgroundColor: Colors.blue),
+                      backgroundColor:change3),
                   onPressed: () {
                     controller.text = '';
                   },
@@ -101,7 +107,7 @@ class _MyAppState extends State<MyApp> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       fixedSize: Size(40, 65),
-                      backgroundColor: Colors.blue),
+                      backgroundColor: change3),
                   onPressed: () {
                     //  controller.text=controller.text*controller.text;
                   },
@@ -114,22 +120,18 @@ class _MyAppState extends State<MyApp> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       fixedSize: Size(40, 65),
-                      backgroundColor: Colors.blue),
+                      backgroundColor: change3),
                   onPressed: () {
-                    controller.text = controller.text.substring(0, controller.text.length-1);
-                  }, child: Icon(Icons.backspace_outlined)),
+                    controller.text = controller.text
+                        .substring(0, controller.text.length - 1);
+                  },
+                  child: Icon(Icons.backspace_outlined)),
               exp('/')
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              wid('7'),
-              wid('8'),
-              wid('9'),
-              exp(
-                'x',
-              )
+            children: [ wid('7'),wid('8'),wid('9'), exp('x',)
             ],
           ),
           Row(
@@ -142,21 +144,24 @@ class _MyAppState extends State<MyApp> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-                            ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      backgroundColor: Colors.red,
-                      fixedSize: Size(40, 65)),
-                  onPressed: () {
-                    
-                  },
-                  child:(Icon(Icons.palette))),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
-                      backgroundColor: Colors.black,
+                      backgroundColor:change2,
+                      fixedSize: Size(40, 65)),
+                  onPressed: () {
+                    change = Colors.black;
+                    change2 = Colors.orange;
+                    change3=Colors.green;
+                    setState(() {});
+                  },
+                  child: (Icon(Icons.palette))),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      backgroundColor:change2,
                       fixedSize: Size(40, 65)),
                   onPressed: () {
                     controller.text += '0';
@@ -170,7 +175,7 @@ class _MyAppState extends State<MyApp> {
                   style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
-                      backgroundColor: Colors.orange,
+                      backgroundColor: change,
                       fixedSize: Size(40, 65.1)),
                   onPressed: () {
                     String exp = '+-x/';
@@ -222,7 +227,10 @@ class _MyAppState extends State<MyApp> {
 
                     controller.text = numbers[0].toStringAsFixed(4);
                   },
-                  child: Text('='))
+                  child: Text(
+                    '=',
+                    style: TextStyle(fontSize: 30),
+                  ))
             ],
           )
         ],
