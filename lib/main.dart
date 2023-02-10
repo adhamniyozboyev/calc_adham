@@ -1,5 +1,5 @@
 import 'package:calc_adham/foiz.dart';
-import 'package:calc_adham/widgets.dart';
+import 'package:calc_adham/mycalc.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -79,7 +79,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
+      
       drawer: Drawer(
           child: Column(
         children: [
@@ -103,7 +103,7 @@ class _MyAppState extends State<MyApp> {
                 });
               })),
           RadioListTile(
-              title: Text('Foiz uchun'),
+              title: Text('Boshqalari uchun'),
               value: 2,
               groupValue: val,
               onChanged: ((v) {
@@ -114,9 +114,7 @@ class _MyAppState extends State<MyApp> {
         ],
       )),
       appBar: AppBar(
-          title: Center(
-        child: Text('Adham'),
-      )),
+          title: Text('                   Adham')),
       body: val == 1 ? Calculator() : Mycalc(),
     );
   }
