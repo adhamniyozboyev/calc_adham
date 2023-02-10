@@ -23,7 +23,7 @@ class _MycalcState extends State<Mycalc> {
   @override
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
-      return Scaffold(
+      return Scaffold(backgroundColor: Colors.green,
         body: Container(
           alignment: Alignment.center,
           width: double.infinity,
