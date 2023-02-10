@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: MyApp(),
   ));
 }
@@ -16,7 +17,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Color change = Colors.orange;
   Color change2 = Colors.black;
-  Color change3=Colors.blue;
+  Color change3 = Colors.blue;
+  int? val;
+  int check = 0;
+  Widget radios = Container();
   TextEditingController controller = TextEditingController();
   Widget exp(
     String b,
@@ -72,11 +76,51 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      drawer: Drawer(
+          child: Column(
+        children: [
+          Container(
+              height: 100,
+              child: Text(
+                '\n\nQanaqa kalkulyator kerak ?',
+                style: TextStyle(fontSize: 23,color: Colors.brown,),
+                textAlign: TextAlign.center,
+              )),
+          RadioListTile(
+              value: 1,
+              groupValue: val,
+              onChanged: ((v) {
+                setState(() {
+                  val=1;
+                });
+              })),
+          RadioListTile(
+              value: 2,
+              groupValue: val,
+              onChanged: ((v) {
+              setState(() {
+                val=2;
+              });
+              })),
+          RadioListTile(
+              value: 3,
+              groupValue: val,
+              onChanged: ((v) {
+                setState(() {
+                  val=3;
+                });
+              })),
+        ],
+      )),
+      appBar: AppBar(
+          title: Center(
+        child: Text('Adham'),
+      )),
+      body: radios = Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           SizedBox(
-            height: 370,
+            height: 300,
           ),
           TextField(
             style: TextStyle(fontSize: 40),
@@ -94,7 +138,7 @@ class _MyAppState extends State<MyApp> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       fixedSize: Size(40, 65),
-                      backgroundColor:change3),
+                      backgroundColor: change3),
                   onPressed: () {
                     controller.text = '';
                   },
@@ -109,6 +153,9 @@ class _MyAppState extends State<MyApp> {
                       fixedSize: Size(40, 65),
                       backgroundColor: change3),
                   onPressed: () {
+                    num ans =
+                        num.parse(controller.text) * num.parse(controller.text);
+                    controller.text = ans.toString();
                     //  controller.text=controller.text*controller.text;
                   },
                   child: Text(
@@ -131,7 +178,13 @@ class _MyAppState extends State<MyApp> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [ wid('7'),wid('8'),wid('9'), exp('x',)
+            children: [
+              wid('7'),
+              wid('8'),
+              wid('9'),
+              exp(
+                'x',
+              )
             ],
           ),
           Row(
@@ -148,12 +201,29 @@ class _MyAppState extends State<MyApp> {
                   style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
-                      backgroundColor:change2,
+                      backgroundColor: change2,
                       fixedSize: Size(40, 65)),
                   onPressed: () {
-                    change = Colors.black;
-                    change2 = Colors.orange;
-                    change3=Colors.green;
+                    check++;
+                    check %= 3;
+                    // if(check==3){check=0;}
+
+                    if (check == 0) {
+                      change = Colors.orange;
+                      change2 = Colors.black;
+                      change3 = Colors.blue;
+                    }
+                    if (check == 1) {
+                      change = Colors.black;
+                      change2 = Colors.orange;
+                      change3 = Colors.green;
+                    }
+                    if (check == 2) {
+                      change = Colors.red;
+                      change2 = Colors.yellow;
+                      change3 = Colors.brown;
+                    }
+
                     setState(() {});
                   },
                   child: (Icon(Icons.palette))),
@@ -161,7 +231,7 @@ class _MyAppState extends State<MyApp> {
                   style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
-                      backgroundColor:change2,
+                      backgroundColor: change2,
                       fixedSize: Size(40, 65)),
                   onPressed: () {
                     controller.text += '0';
@@ -225,7 +295,7 @@ class _MyAppState extends State<MyApp> {
                       }
                     }
 
-                    controller.text = numbers[0].toStringAsFixed(4);
+                    controller.text = numbers[0].toStringAsFixed(1);
                   },
                   child: Text(
                     '=',
