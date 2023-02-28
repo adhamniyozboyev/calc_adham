@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: change,
-          fixedSize: Size(40, 65),
+          fixedSize: Size(40.0, 65),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         ),

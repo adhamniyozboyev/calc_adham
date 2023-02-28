@@ -186,8 +186,8 @@ class _CalculatorState extends State<Calculator> {
                     change3 = Colors.black;
                   }
                   if (check == 2) {
-                    change = Colors.blue;
-                    change2 = Colors.black;
+                    change = Colors.black;
+                    change2 = Colors.blue;
                     change3 = Colors.orange;
                   }
 
